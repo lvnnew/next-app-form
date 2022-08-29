@@ -1,9 +1,27 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import {
+  Box,
+  Button,
+  TextareaAutosize,
+  TextField,
+  Typography,
+} from "@mui/material";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const submitForm = (e: any) => {
+    e.preventDefault();
+    console.log({ email, firstName, subject, message });
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -18,7 +36,7 @@ const Home: NextPage = () => {
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
 
@@ -51,6 +69,67 @@ const Home: NextPage = () => {
             </p>
           </a>
         </div>
+        <div className={styles.grid}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              padding: "10px",
+              maxWidth: "700px",
+              margin: "30px auto",
+              background: "#fff",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{
+                textAlign: "center",
+                color: "#000",
+              }}
+            >
+              Простая форма
+            </Typography>
+            <Box
+              sx={{
+                marginTop: "30px",
+              }}
+              component="form"
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                label="Имя"
+                variant="outlined"
+                fullWidth
+                sx={{
+                  marginBottom: "20px !important",
+                }}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+
+              <TextField
+                label="Телефон"
+                variant="outlined"
+                fullWidth
+                sx={{
+                  marginBottom: "20px !important",
+                }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <Button
+                variant="contained"
+                type="submit"
+                color="primary"
+                sx={{ width: "100%", fontSize: "16px" }}
+                onClick={submitForm}
+              >
+                Отправить
+              </Button>
+            </Box>
+          </Box>
+        </div>
       </main>
 
       <footer className={styles.footer}>
@@ -59,14 +138,14 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
