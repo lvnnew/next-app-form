@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
 import styles from "../styles/Home.module.css";
-import TelegramBot from "node-telegram-bot-api";
 import ym from "react-yandex-metrika";
 import Form from "./Form";
 

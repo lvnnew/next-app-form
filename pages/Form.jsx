@@ -1,10 +1,6 @@
-import {
-  Box,
-  Button,
-  TextareaAutosize,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { YMInitializer } from "react-yandex-metrika";
+import ym from "react-yandex-metrika";
 
 const Form = () => {
   const handleSubmit = async (event) => {
@@ -78,6 +74,7 @@ const Form = () => {
         />
 
         <Button
+          onClick={ym(90280986, "reachGoal", "FormButtonClick")}
           variant="contained"
           type="submit"
           color="primary"
@@ -86,6 +83,7 @@ const Form = () => {
           Отправить
         </Button>
       </form>
+      <YMInitializer accounts={[90280986]} options={{ webvisor: true }} />
     </Box>
   );
 };
