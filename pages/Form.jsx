@@ -43,6 +43,7 @@ const Form = () => {
         sx={{
           textAlign: "center",
           color: "#000",
+          marginBottom: "20px",
         }}
       >
         Простая форма
