@@ -27,9 +27,6 @@ const Form = () => {
     alert(result.data);
   };
 
-  ym("hit", "/cart");
-  ym("reachGoal", "whateverGoal", { awesomeParameter: 42 });
-
   return (
     <Box
       sx={{
@@ -56,6 +53,10 @@ const Form = () => {
           label="Имя"
           variant="outlined"
           fullWidth
+          onClick={() => {
+            ym("hit", "/cart");
+            ym("reachGoal", "whateverGoal", { awesomeParameter: 42 });
+          }}
           sx={{
             marginBottom: "20px !important",
           }}
