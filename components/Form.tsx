@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
-
+import ym from "react-yandex-metrika";
 
 const Form = () => {
   const handleSubmit = async (event: any) => {
@@ -27,6 +27,9 @@ const Form = () => {
     alert(result.data);
   };
 
+  ym("hit", "/cart");
+  ym("reachGoal", "whateverGoal", { awesomeParameter: 42 });
+
   return (
     <Box
       sx={{
@@ -38,7 +41,6 @@ const Form = () => {
         borderRadius: "10px",
       }}
     >
-      
       <Typography
         variant="h4"
         sx={{
