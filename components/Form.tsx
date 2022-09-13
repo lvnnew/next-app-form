@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { YMInitializer } from "react-yandex-metrika";
+
 
 const Form = () => {
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
 
     const data = {
@@ -26,6 +26,7 @@ const Form = () => {
     const result = await response.json();
     alert(result.data);
   };
+
   return (
     <Box
       sx={{
@@ -37,7 +38,7 @@ const Form = () => {
         borderRadius: "10px",
       }}
     >
-      <YMInitializer accounts={[90280986]} options={{ webvisor: true }} />
+      
       <Typography
         variant="h4"
         sx={{
