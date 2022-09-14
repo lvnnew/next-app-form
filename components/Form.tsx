@@ -52,10 +52,10 @@ const Form = () => {
         <TextField
           label="Имя"
           variant="outlined"
-          className="FirstInput"
           fullWidth
           onClick={() => {
-            ym("90280986", "reachGoal", "FirstInput");
+            ym("hit", "/cart");
+            ym("reachGoal", "whateverGoal", { awesomeParameter: 42 });
           }}
           sx={{
             marginBottom: "20px !important",
@@ -69,11 +69,7 @@ const Form = () => {
         <TextField
           label="Телефон"
           variant="outlined"
-          className="SecondInput"
           fullWidth
-          onClick={() => {
-            ym("90280986", "reachGoal", "SecondInput");
-          }}
           sx={{
             marginBottom: "20px !important",
           }}
@@ -87,11 +83,7 @@ const Form = () => {
           variant="contained"
           type="submit"
           color="primary"
-          className="FormButton"
           sx={{ width: "100%", fontSize: "16px" }}
-          onClick={() => {
-            ym("90280986", "reachGoal", "FormButton");
-          }}
         >
           Отправить
         </Button>
