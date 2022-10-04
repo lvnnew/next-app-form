@@ -1,41 +1,43 @@
-import React, { FC } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import React from "react";
+import { Path, useForm, UseFormRegister, SubmitHandler } from "react-hook-form";
 import ym from "react-yandex-metrika";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import axios from "axios";
+import { request } from "http";
+import { CropLandscapeOutlined } from "@mui/icons-material";
+interface IFormInput {
+  name: string;
+  phone: string;
+}
 
 const Form = () => {
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
+  const { register, handleSubmit } = useForm<IFormInput>();
 
-    const data = {
-      name: event.target.name.value,
-      phone: event.target.phone.value,
-    };
+  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    console.log(data);
 
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/form";
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSONdata,
-    };
-    const response = await fetch(endpoint, options);
-
-    const result = await response.json();
-    alert(result.data);
+    axios
+      .post("/api/form", data)
+      .then((response) => {
+        console.log("Status: ", response.status);
+        console.log("Data: ", response.data);
+      })
+      .catch((error) => {
+        console.error("Something went wrong!", error);
+      });
   };
 
   return (
     <Box
       sx={{
-        flexGrow: 1,
         padding: "30px",
         maxWidth: "700px",
         margin: "30px auto",
         background: "#fff",
-        borderRadius: "10px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
       }}
     >
       <Typography
@@ -48,45 +50,23 @@ const Form = () => {
       >
         Простая форма
       </Typography>
-      <form action="/api/form" method="post" onSubmit={handleSubmit}>
-        <TextField
-          label="Имя"
-          variant="outlined"
-          fullWidth
-          onClick={() => {
-            ym("hit", "/cart");
-            ym("reachGoal", "whateverGoal", { awesomeParameter: 42 });
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("name")} />
+        <input
+          {...register("phone")}
+          onChange={() => {
+            ym("reachGoal", "FirstInput");
           }}
-          sx={{
-            marginBottom: "20px !important",
-          }}
-          type="text"
-          id="name"
-          name="name"
-          required
         />
-
-        <TextField
-          label="Телефон"
-          variant="outlined"
-          fullWidth
-          sx={{
-            marginBottom: "20px !important",
-          }}
-          type="text"
-          id="phone"
-          name="phone"
-          required
-        />
-
-        <Button
-          variant="contained"
+        <button
           type="submit"
-          color="primary"
-          sx={{ width: "100%", fontSize: "16px" }}
-        >
-          Отправить
-        </Button>
+          onClick={() => {
+            ym("reachGoal", "FormButton");
+            ym("getClientID", function (clientID: string) {
+              return clientID;
+            });
+          }}
+        />
       </form>
     </Box>
   );

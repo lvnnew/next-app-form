@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const text = "Имя: " + body.name + " Телефон: " + body.phone;
-
+ 
   bot.sendMessage(CHAT_ID, text);
 
   res.status(200).end;
