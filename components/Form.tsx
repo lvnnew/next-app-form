@@ -68,11 +68,19 @@ const Form = () => {
           onChange={() => {
             ym("reachGoal", "FirstInput");
           }}
+          style={{
+            maxWidth: "100%",
+            margin: "10px",
+          }}
         />
         <input
           {...register("phone")}
           onChange={() => {
             ym("reachGoal", "SecondInput");
+          }}
+          style={{
+            maxWidth: "100%",
+            margin: "10px",
           }}
         />
         <button
@@ -82,6 +90,10 @@ const Form = () => {
             ym("getClientID", function (clientID: string) {
               return clientID;
             });
+          }}
+          style={{
+            maxWidth: "100%",
+            margin: "10px",
           }}
         >
           Отправить
