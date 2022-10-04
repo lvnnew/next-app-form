@@ -53,7 +53,7 @@ const Form = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         style={{
-          padding: "30px",
+          padding: "10px",
           maxWidth: "700px",
           margin: "30px auto",
           background: "#fff",
