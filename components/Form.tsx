@@ -50,12 +50,29 @@ const Form = () => {
       >
         Простая форма
       </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register("name")} />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          padding: "30px",
+          maxWidth: "700px",
+          margin: "30px auto",
+          background: "#fff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <input
+          {...register("name")}
+          onChange={() => {
+            ym("reachGoal", "FirstInput");
+          }}
+        />
         <input
           {...register("phone")}
           onChange={() => {
-            ym("reachGoal", "FirstInput");
+            ym("reachGoal", "SecondInput");
           }}
         />
         <button
@@ -66,7 +83,9 @@ const Form = () => {
               return clientID;
             });
           }}
-        />
+        >
+          Отправить
+        </button>
       </form>
     </Box>
   );
