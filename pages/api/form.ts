@@ -1,8 +1,8 @@
 const TelegramBot = require("node-telegram-bot-api");
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const TOKEN = process.env.token;
-const CHAT_ID = process.env.chat_id;
+const TOKEN = process.env.TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
 const bot = new TelegramBot(TOKEN, { polling: true });
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -12,7 +12,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const text = "Имя: " + body.name + " Телефон: " + body.phone;
- 
+
   bot.sendMessage(CHAT_ID, text);
 
   res.status(200).end;
